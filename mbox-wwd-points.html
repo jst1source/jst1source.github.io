@@ -22,7 +22,7 @@ var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11',
 center: [-103.59179687498357, 40.66995747013945],
-zoom: 5
+zoom: 4
 });
  
 map.on('load', function() {
@@ -52,20 +52,32 @@ paint: {
 "circle-color": [
 "step",
 ["get", "point_count"],
-"#51bbd6",
+"#7433FF",
 100,
-"#f1f075",
-750,
-"#f28cb1"
+"#339CFF",
+500,
+"#61FF33",
+1000,
+"#FFE633",
+2500,
+"#FF9333",
+5000,
+"#FF5733"
 ],
 "circle-radius": [
 "step",
 ["get", "point_count"],
-20,
+10,
 100,
+20,
+500,
 30,
-750,
-40
+1000,
+40,
+2500,
+50,
+5000,
+75
 ]
 }
 });
