@@ -34,7 +34,6 @@ type: "geojson",
 // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
 data: "https://jst1source.github.io/data/exit-ramps-us-bbox.geojson"
 });
- 
 
 map.addLayer({
 id: "unclustered-point",
@@ -42,9 +41,9 @@ type: "circle",
 source: "exitramps",
 filter: ["!", ["has", "point_count"]],
 paint: {
-"circle-color": "#11b4da",
-"circle-radius": 8,
-"circle-stroke-width": 1,
+"circle-color": "#33FF42",
+"circle-radius": 10,
+"circle-stroke-width": 2,
 "circle-stroke-color": "#fff"
 }
 });
