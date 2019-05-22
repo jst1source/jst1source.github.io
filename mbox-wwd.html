@@ -28,7 +28,7 @@ zoom: 3
 map.on('load', function() {
 // Add a new source from our GeoJSON data and set the
 // 'cluster' option to true. GL-JS will add the point_count property to your source data.
-map.addSource("earthquakes", {
+map.addSource("exitramps", {
 type: "geojson",
 // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
 // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
@@ -37,11 +37,63 @@ cluster: true,
 clusterMaxZoom: 14, // Max zoom to cluster points on
 clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
 });
+
+map.addLayer({
+  id: 'trees-heat',
+  type: 'heatmap',
+  source: 'exitramps',
+  maxzoom: 15,
+  paint: {
+    // increase weight as diameter breast height increases
+    'heatmap-weight': {
+      property: 'dbh',
+      type: 'exponential',
+      stops: [
+        [1, 0],
+        [62, 1]
+      ]
+    },
+    // increase intensity as zoom level increases
+    'heatmap-intensity': {
+      stops: [
+        [11, 1],
+        [15, 3]
+      ]
+    },
+    // assign color values be applied to points depending on their density
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0, 'rgba(236,222,239,0)',
+      0.2, 'rgb(208,209,230)',
+      0.4, 'rgb(166,189,219)',
+      0.6, 'rgb(103,169,207)',
+      0.8, 'rgb(28,144,153)'
+    ],
+    // increase radius as zoom increases
+    'heatmap-radius': {
+      stops: [
+        [11, 15],
+        [15, 20]
+      ]
+    },
+    // decrease opacity to transition into the circle layer
+    'heatmap-opacity': {
+      default: 1,
+      stops: [
+        [14, 1],
+        [15, 0]
+      ]
+    },
+  }
+}, 'waterway-label');
  
+ /*
 map.addLayer({
 id: "clusters",
 type: "circle",
-source: "earthquakes",
+source: "exitramps",
 filter: ["has", "point_count"],
 paint: {
 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -70,10 +122,11 @@ paint: {
 }
 });
  
+ 
 map.addLayer({
 id: "cluster-count",
 type: "symbol",
-source: "earthquakes",
+source: "exitramps",
 filter: ["has", "point_count"],
 layout: {
 "text-field": "{point_count_abbreviated}",
@@ -81,11 +134,11 @@ layout: {
 "text-size": 12
 }
 });
- 
+ */
 map.addLayer({
 id: "unclustered-point",
 type: "circle",
-source: "earthquakes",
+source: "exitramps",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#11b4da",
@@ -99,7 +152,7 @@ paint: {
 map.on('click', 'clusters', function (e) {
 var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
 var clusterId = features[0].properties.cluster_id;
-map.getSource('earthquakes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+map.getSource('exitramps').getClusterExpansionZoom(clusterId, function (err, zoom) {
 if (err)
 return;
  
