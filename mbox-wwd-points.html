@@ -9,17 +9,16 @@
 <style>
 body { margin:0; padding:0; }
 #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
-</head>
-<body>
-<style>
-	#menu {
+#menu {
 		position: absolute;
 		background: #fff;
 		padding: 10px;
 	font-family: 'Open Sans', sans-serif;
 	}
 </style>
+</head>
+<body>
+
  
 <div id='map'></div>
 <div id='menu'>
@@ -38,9 +37,9 @@ body { margin:0; padding:0; }
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
 var map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/mapbox/dark-v10',
+style: 'mapbox://styles/mapbox/streets-v11',
 center: [-103.59179687498357, 40.66995747013945],
-zoom: 3
+zoom: 5
 });
 
 var layerList = document.getElementById('menu');
