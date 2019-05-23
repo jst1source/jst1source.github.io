@@ -44,8 +44,8 @@ map.addLayer({
 "interpolate",
 ["linear"],
 ["get", "val"],
-1, 0,
-1, 1
+0, 0,
+6, 1
 ],
 // Increase the heatmap color weight weight by zoom level
 // heatmap-intensity is a multiplier on top of heatmap-weight
@@ -53,8 +53,8 @@ map.addLayer({
 "interpolate",
 ["linear"],
 ["zoom"],
-11, 1,
-15, 3
+0, 1,
+9, 3
 ],
 // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
 // Begin color ramp at 0-stop with a 0-transparancy color
@@ -75,8 +75,8 @@ map.addLayer({
 "interpolate",
 ["linear"],
 ["zoom"],
-11, 15,
-15, 20
+0, 2,
+9, 20
 ],
 // Transition from heatmap to circle layer by zoom level
 "heatmap-opacity": [
