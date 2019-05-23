@@ -45,8 +45,8 @@ map.addLayer({
 // heatmap-intensity is a multiplier on top of heatmap-weight
 "heatmap-intensity": [
 "interpolate",["linear"],["zoom"],
-3, 1,
-5, 3
+5, .5,
+10, 1
 ],
 // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
 // Begin color ramp at 0-stop with a 0-transparancy color
@@ -68,7 +68,7 @@ map.addLayer({
 ["linear"],
 ["zoom"],
 0, 2,
-9, 10
+9, 7
 ],
 // Transition from heatmap to circle layer by zoom level
 "heatmap-opacity": [
@@ -103,10 +103,8 @@ map.addLayer({
 ],
 // Color circle by earthquake magnitude
 "circle-color": [
-"interpolate",
-["linear"],
-["get", "val"],
-1, "rgba(33,102,172,0)",
+"interpolate",["linear"],["get", "val"],
+1, "rgba(209,229,240))",
 2, "rgb(103,169,207)",
 3, "rgb(209,229,240)",
 4, "rgb(253,219,199)",
