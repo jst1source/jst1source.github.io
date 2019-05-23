@@ -37,15 +37,15 @@ map.addLayer({
 "id": "earthquakes-heat",
 "type": "heatmap",
 "source": "earthquakes",
-"maxzoom": 9,
+"maxzoom": 15,
 "paint": {
 // Increase the heatmap weight based on frequency and property magnitude
 "heatmap-weight": [
 "interpolate",
 ["linear"],
 ["get", "val"],
-0, 0,
-6, 1
+1, 0,
+62, 1
 ],
 // Increase the heatmap color weight weight by zoom level
 // heatmap-intensity is a multiplier on top of heatmap-weight
@@ -53,8 +53,8 @@ map.addLayer({
 "interpolate",
 ["linear"],
 ["zoom"],
-0, 1,
-9, 3
+11, 1,
+15, 3
 ],
 // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
 // Begin color ramp at 0-stop with a 0-transparancy color
@@ -75,8 +75,8 @@ map.addLayer({
 "interpolate",
 ["linear"],
 ["zoom"],
-0, 2,
-9, 20
+11, 15,
+15, 20
 ],
 // Transition from heatmap to circle layer by zoom level
 "heatmap-opacity": [
