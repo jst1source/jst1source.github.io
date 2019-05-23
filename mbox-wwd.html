@@ -64,19 +64,15 @@ map.addLayer({
 ],
 // Adjust the heatmap radius by zoom level
 "heatmap-radius": [
-"interpolate",
-["linear"],
-["zoom"],
+"interpolate",["linear"],["zoom"],
 0, 2,
 12, 10
 ],
 // Transition from heatmap to circle layer by zoom level
 "heatmap-opacity": [
-"interpolate",
-["linear"],
-["zoom"],
-7, 1,
-15, 0
+"interpolate",["linear"],["zoom"],
+6, 1,
+10, 0
 ],
 }
 }, 'waterway-label');
@@ -90,14 +86,8 @@ map.addLayer({
 // Size circle radius by earthquake magnitude and zoom level
 "circle-radius": [
 "interpolate",["linear"],["zoom"],
-7, ["interpolate",["linear"],["get", "val"],
-1, 1,
-6, 4
-],16, [
-"interpolate",["linear"],["get", "val"],
-1, 5,
-6, 50
-]
+0, 2,
+15, 20
 ],
 // Color circle by earthquake magnitude
 "circle-color": "red",
