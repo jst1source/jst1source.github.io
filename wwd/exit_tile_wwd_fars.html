@@ -59,7 +59,7 @@ map.on('mouseenter', 'unclustered-point', function(e) {
  map.getCanvas().style.cursor = 'pointer';
  
  var coordinates = e.features[0].geometry.coordinates.slice();
- var description = e.features[0].properties.year;
+ var description = 'Year: ' + e.features[0].properties.year + '<br>Fatalities: ' + e.features[0].properties.val;
  
  // Ensure that if the map is zoomed out such that multiple
  // copies of the feature are visible, the popup appears
