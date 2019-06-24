@@ -42,7 +42,16 @@ source: "wwdfatalities",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0097",
-"circle-radius": 4,
+"circle-radius": {
+	property: 'val',
+		stops: [
+			[1, 4],
+			[2, 6],
+			[3, 8],
+			[4, 10],
+			[5, 12]
+	]
+},
 "circle-stroke-width": 1,
 "circle-stroke-color": "#fff"
 }
