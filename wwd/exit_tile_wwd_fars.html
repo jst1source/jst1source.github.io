@@ -23,13 +23,13 @@ container: 'map',
 //style: 'mapbox://styles/mapbox/streets-v11',
 style: 'mapbox://styles/jonathanstone/cjx1toc5j5yl21cli5syavwzu',
 center: [-98.5795, 39.8283],
-zoom: 4
+zoom: 6
 });
  
 map.on('load', function() {
 // Add a new source from our GeoJSON data and set the
 // 'cluster' option to true. GL-JS will add the point_count property to your source data.
-map.addSource("exitramps", {
+map.addSource("wwdfatalities", {
 type: "geojson",
 data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042015.geojson"
 });
@@ -38,7 +38,7 @@ data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042015.geojson"
 map.addLayer({
 id: "unclustered-point",
 type: "circle",
-source: "exitramps",
+source: "wwdfatalities",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0097",
@@ -48,15 +48,13 @@ paint: {
 }
 });
  
-
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
  closeButton: false,
  closeOnClick: false
 });
 
- 
-map.on('mouseenter', 'places', function(e) {
+map.on('mouseenter', 'wwdfatalities', function(e) {
 // Change the cursor style as a UI indicator.
  map.getCanvas().style.cursor = 'pointer';
  
