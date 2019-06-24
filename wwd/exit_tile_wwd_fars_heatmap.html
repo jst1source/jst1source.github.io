@@ -41,7 +41,7 @@ map.addLayer({
 "maxzoom": 15,
 "paint": {
 // Increase the heatmap weight based on frequency and property magnitude
-"heatmap-weight": ['*',1.5,['number', ['get', 'val']]],
+"heatmap-weight": ['*',2,['number', ['get', 'val']]],
 // Increase the heatmap color weight weight by zoom level
 // heatmap-intensity is a multiplier on top of heatmap-weight
 "heatmap-intensity": [
@@ -85,7 +85,7 @@ source: "wwdfatalities",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0097",
-"circle-radius": ['*',1.5,['number', ['get', 'val']]],
+"circle-radius": 1,
 "circle-stroke-width": 1,
 "circle-stroke-color": "#fff"
 }
