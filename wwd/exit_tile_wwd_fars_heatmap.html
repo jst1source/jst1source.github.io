@@ -41,7 +41,7 @@ map.addLayer({
 "maxzoom": 15,
 "paint": {
 // Increase the heatmap weight based on frequency and property magnitude
-"heatmap-weight": ['*',2,['number', ['get', 'val']]],
+"heatmap-weight": ['*',5,['number', ['get', 'val']]],
 // Increase the heatmap color weight weight by zoom level
 // heatmap-intensity is a multiplier on top of heatmap-weight
 "heatmap-intensity": [
@@ -66,15 +66,11 @@ map.addLayer({
 // Adjust the heatmap radius by zoom level
 "heatmap-radius": [
 	"interpolate",["linear"],["zoom"],
-	0, 2,
-	12, 10
+	0, 5,
+	12, 15
 	],
 	// Transition from heatmap to circle layer by zoom level
-	"heatmap-opacity": [
-	"interpolate",["linear"],["zoom"],
-	6, 1,
-	10, 0
-],
+	"heatmap-opacity": .75,
 }
 }, 'waterway-label');
  
