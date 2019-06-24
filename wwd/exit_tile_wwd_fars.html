@@ -43,13 +43,13 @@ filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0097",
 "circle-radius": {
-	property: 'val',
+	property: "val",
 		stops: [
-			[1, 4],
-			[2, 6],
-			[3, 8],
-			[4, 10],
-			[5, 12]
+			[{value: 1}, 4],
+			[{value: 2}, 6],
+			[{value: 3}, 8],
+			[{value: 4}, 10],
+			[{value: 5}, 12]
 	]
 },
 "circle-stroke-width": 1,
