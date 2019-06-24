@@ -20,7 +20,8 @@ body { margin:0; padding:0; }
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
 var map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/jonathanstone/cjx1toc5j5yl21cli5syavwzu',
+style: 'mapbox://styles/mapbox/streets-v11',
+//style: 'mapbox://styles/jonathanstone/cjx1toc5j5yl21cli5syavwzu',
 center: [-98.5795, 39.8283],
 zoom: 4
 });
@@ -30,8 +31,6 @@ map.on('load', function() {
 // 'cluster' option to true. GL-JS will add the point_count property to your source data.
 map.addSource("exitramps", {
 type: "geojson",
-// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
 data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042015.geojson"
 });
 
