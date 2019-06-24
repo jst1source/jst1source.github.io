@@ -48,21 +48,7 @@ paint: {
 }
 });
  
-// inspect a cluster on click
-map.on('click', 'clusters', function (e) {
-var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-var clusterId = features[0].properties.cluster_id;
-map.getSource('exitramps').getClusterExpansionZoom(clusterId, function (err, zoom) {
-if (err)
-return;
- 
-map.easeTo({
-center: features[0].geometry.coordinates,
-zoom: zoom
-});
-});
-});
- 
+
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
  closeButton: false,
