@@ -75,7 +75,7 @@ map.on('mouseenter', 'wwdfatalities', function(e) {
  .addTo(map);
 });
  
-map.on('mouseleave', 'places', function() {
+map.on('mouseleave', 'unclustered-point', function() {
  map.getCanvas().style.cursor = '';
  popup.remove();
 });
