@@ -42,14 +42,15 @@ source: "wwdfatalities",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FFFF97",
-"circle-radius": {
-	property: "val",
-		stops: [
-			[value: 1, 4],
-			[value: 2, 6],
-			[value: 3, 8],
-			[value: 4, 10],
-			[value: 5, 12]
+"circle-radius": [
+		"match",
+		["get", "val"],
+		4, "1",
+		6, "2",
+		8, "3",
+		10, "4",
+		12, "5",
+		/* other */, "5"
 	]
 },
 "circle-stroke-width": 1,
