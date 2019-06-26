@@ -31,7 +31,7 @@ body {
 }
 
 .colors {
-  background: linear-gradient(to right, #fffa00, #ffd400, #ffbb00, #ff9d00, #ff6e00, #ff5000, #ff006a);
+  background: linear-gradient(to right, #ffd400, #ffbb00, #ff9d00, #ff6e00, #ff5000, #ff006a, #ff00b6);
   margin-bottom: 5px;
 }
  
@@ -46,10 +46,10 @@ body {
 
 <div id='map'></div>
 <div id='console'>
-  <h2>US: Wrong Way Driver Fatalities & Divided Highway Exits</h2>
+  <h3>US: Wrong Way Driver Fatalities & Divided Highway Exits</h3>
   <p>Data: <br>Fatalities - NHTSA FARS Database<br>Exits - OpenStreetMaps</p>
   <div class='session'>
-    <h2>Fatalities</h2>
+    <h3>Fatalities</h3>
     <div class='row colors'>
     </div>
     <div class='row labels'>
@@ -101,14 +101,14 @@ paint: {
         'interpolate',
         ['linear'],
         ['number', ['get', 'val']],
-        1, '#fffa00',
-        2, '#ffd400',
-        3, '#ffbb00',
-        4, '#ff9d00',
-        5, '#ff6e00',
-        6, '#ff5000',
-        7, '#ff006a',
-        8, '#ff006a'
+        1, '#ffd400',
+        2, '#ffbb00',
+        3, '#ff9d00',
+        4, '#ff6e00',
+        5, '#ff5000',
+        6, '#ff006a',
+        7, '#ff00b6',
+        8, '#ff00b6'
       ]
 }
 });
