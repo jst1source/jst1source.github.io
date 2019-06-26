@@ -15,6 +15,10 @@ body { margin:0; padding:0; }
 <body>
 
 <div id='map'></div>
+<div id='console'>
+  <h1>US: Wrong Way Driver Fatalities & Divided Highway Exits</h1>
+  <p>Data: Fatalities - NHTSA FARS Database, Exits - OpenStreetMaps</p>
+</div>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
@@ -45,7 +49,7 @@ paint: {
 "circle-opacity": .85,
 "circle-radius": [
  'interpolate', ['linear'], ['zoom'],
- 4, ['*',2,['log10',['*',8,['number', ['get', 'val']]]]],
+ 4, ['*',5,['log10',['*',8,['number', ['get', 'val']]]]],
  22, ['*',25,['log10',['*',8,['number', ['get', 'val']]]]],
 ],
 "circle-stroke-width": .25,
