@@ -154,7 +154,7 @@ map.on('mouseleave', 'unclustered-point', function() {
 document.getElementById('slider').addEventListener('input', function(e) {
 var hour = parseInt(e.target.value);
 // update the map
-map.setFilter('collisions', ['==', ['number', ['get', 'Year']], hour]);
+map.setFilter('collisions', ['==', ['number', ['get', 'year']], hour]);
 
 // update text in the UI
 document.getElementById('active-year').innerText = hour;
