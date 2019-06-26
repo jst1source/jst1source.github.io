@@ -61,10 +61,6 @@ body {
       <div class='label'>6</div>
       <div class='label'>7+</div>
     </div>
-    <div class='session' id='sliderbar'>
-      <h3>Year: <label id='active-year'>All</label></h3>
-      <input id='slider' class='row' type='range' min='2004' max='2017' step='1' value='2017' />
-    </div>
 </div>
 
 <script>
@@ -114,15 +110,6 @@ paint: {
         8, '#ff00b6'
       ]
 }
-});
-  
-document.getElementById('slider').addEventListener('input', function(e) {
-var hour = parseInt(e.target.value);
-// update the map
-map.setFilter('collisions', ['==', ['number', ['get', 'year']], hour]);
-
-// update text in the UI
-document.getElementById('active-year').innerText = hour;
 });
  
 // Create a popup, but don't add it to the map yet.
