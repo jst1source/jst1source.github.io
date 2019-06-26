@@ -20,6 +20,26 @@ body {
   padding: 10px 20px;
   background-color: white;
 }
+  
+.session {
+  margin-bottom: 20px;
+}
+
+.row {
+  height: 12px;
+  width: 100%;
+}
+
+.colors {
+  background: linear-gradient(to right, #fffa00, #ffd400, #ffbb00, #ff9d00, #ff6e00, #ff5000, #ff006a);
+  margin-bottom: 5px;
+}
+ 
+.label {
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -28,6 +48,20 @@ body {
 <div id='console'>
   <h1>US: Wrong Way Driver Fatalities & Divided Highway Exits</h1>
   <p>Data: Fatalities - NHTSA FARS Database, Exits - OpenStreetMaps</p>
+  <div class='session'>
+    <h2>Fatalities</h2>
+    <div class='row colors'>
+    </div>
+    <div class='row labels'>
+      <div class='label'>1</div>
+      <div class='label'>2</div>
+      <div class='label'>3</div>
+      <div class='label'>4</div>
+      <div class='label'>5</div>
+      <div class='label'>6</div>
+      <div class='label'>7+</div>
+    </div>
+</div>
 </div>
 
 <script>
@@ -73,9 +107,8 @@ paint: {
         4, '#ff9d00',
         5, '#ff6e00',
         6, '#ff5000',
-        7, '#ff0000',
-        8, '#ff0000',
-        9, '#ff0000'
+        7, '#ff006a',
+        8, '#ff006a'
       ]
 }
 });
