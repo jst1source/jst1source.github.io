@@ -43,7 +43,7 @@ filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0050",
 "circle-opacity": .85,
-"circle-radius": ['*',2,['number', ['get', 'val']]],
+"circle-radius": ['log10',['*',8,['number', ['get', 'val']]]],
 "circle-stroke-width": .25,
 "circle-stroke-color": "#fff"
 }
