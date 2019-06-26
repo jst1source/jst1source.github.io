@@ -62,8 +62,8 @@ body {
       <div class='label'>7+</div>
     </div>
     <div class='session' id='sliderbar'>
-      <h2>Hour: <label id='active-hour'>12PM</label></h2>
-      <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
+      <h3>Year: <label id='active-year'>All</label></h3>
+      <input id='slider' class='row' type='range' min='2004' max='2017' step='1' value='2017' />
     </div>
 </div>
 
@@ -115,6 +115,7 @@ paint: {
       ]
 }
 });
+  
  
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
@@ -148,6 +149,15 @@ map.on('mouseleave', 'unclustered-point', function() {
  popup.remove();
 });
  
+});
+  
+document.getElementById('slider').addEventListener('input', function(e) {
+var hour = parseInt(e.target.value);
+// update the map
+map.setFilter('collisions', ['==', ['number', ['get', 'Year']], hour]);
+
+// update text in the UI
+document.getElementById('active-year').innerText = hour;
 });
 </script>
  
