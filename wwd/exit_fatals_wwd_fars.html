@@ -63,7 +63,20 @@ paint: {
  22, ['*',25,['log10',['*',8,['number', ['get', 'val']]]]],
 ],
 "circle-stroke-width": .25,
-"circle-stroke-color": "#fff"
+"circle-stroke-color": [
+        'interpolate',
+        ['linear'],
+        ['number', ['get', 'val']],
+        1, '#fffa00',
+        2, '#ffd400',
+        3, '#ffbb00',
+        4, '#ff9d00',
+        5, '#ff6e00',
+        6, '#ff5000',
+        7, '#ff0000',
+        8, '#ff0000',
+        9, '#ff0000'
+      ]
 }
 });
  
