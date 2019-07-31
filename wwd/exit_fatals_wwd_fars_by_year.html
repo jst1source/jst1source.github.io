@@ -31,12 +31,12 @@ body {
 }
 
 .colors {
-  background: linear-gradient(to right, #FF0097, #D800FF, #7400FF, #1300FF, #00D8FF, #00FFEC, #00FF61, #B2FF00, #FFFF00, #FFC500, #FF6C00, #FF1F00, #D6D6D6, #737373);
+  background: linear-gradient(to right, #160094, #1300FF, #00D8FF, #00FFEC, #00FF61, #B2FF00, #FFFF00, #FFC500, #FF6C00, #FF1F00, #FF0097, #D800FF, #737373, #D6D6D6);
   margin-bottom: 5px;
 }
   
 .label {
-  width: 7%;
+  width: 5.95%;
   display: inline-block;
   text-align: center;
 }
@@ -68,6 +68,10 @@ body {
       <div class='label'>16</div>
       <div class='label'>17</div>
     </div>
+	<div class='session' id='sliderbar'>
+	  <h4><label id='active-hour'>All</label></h4>
+	  <input id='slider' class='row' type='range' min='2003' max='2017' step='1' value='2003' />
+	</div>
 </div>
 
 <script>
@@ -93,7 +97,6 @@ map.addLayer({
 id: "unclustered-point",
 type: "circle",
 source: "wwdfatalities",
-filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-stroke-color": "#fff",
 "circle-opacity": .85,
@@ -107,24 +110,43 @@ paint: {
         'interpolate',
         ['linear'],
         ['number', ['get', 'year']],
-        2004, '#FF0097',
-        2005, '#D800FF',
-        2006, '#7400FF',
-        2007, '#1300FF',
-        2008, '#00D8FF',
-        2009, '#00FFEC',
-        2010, '#00FF61',
-        2011, '#B2FF00',
-        2012, '#FFFF00',
-        2013, '#FFC500',
-        2014, '#FF6C00',
-        2015, '#FF1F00',
-        2016, '#D6D6D6',
-        2017, '#737373'
+        2004, '#160094',
+        2005, '#1300FF',
+        2006, '#00D8FF',
+        2007, '#00FFEC',
+        2008, '#00FF61',
+        2009, '#B2FF00',
+        2010, '#FFFF00',
+        2011, '#FFC500',
+        2012, '#FF6C00',
+        2013, '#FF1F00',
+        2014, '#FF0097',
+        2015, '#D800FF',
+        2016, '#737373',
+        2017, '#D6D6D6'
       ]
 }
 });
  
+document.getElementById('slider').addEventListener('input', function(e) {
+  var hour = parseInt(e.target.value);
+  // update the map
+  
+	
+  if(hour == '2003')
+  {
+	hour = 'All';
+	
+	map.setFilter('unclustered-point', null);
+  }
+  else
+  {
+	map.setFilter('unclustered-point', ['==', ['number', ['get', 'year']], hour]);
+  }
+   // update text in the UI
+  document.getElementById('active-hour').innerText = hour;
+}); 
+
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
  closeButton: false,
