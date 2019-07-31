@@ -31,10 +31,10 @@ body {
 }
 
 .colors {
-  background: linear-gradient(to right, #ffd400, #ffbb00, #ff9d00, #ff6e00, #ff5000, #ff006a, #ff00b6);
+  background: linear-gradient(to right, #FF0097, #D800FF, #7400FF, #1300FF, #00D8FF, #00FFEC, #00FF61, #B2FF00, #FFFF00, #FFC500, #FF6C00, #FF1F00, #D6D6D6, #737373);
   margin-bottom: 5px;
 }
- 
+  
 .label {
   width: 12%;
   display: inline-block;
@@ -106,7 +106,7 @@ paint: {
 "circle-color": [
         'interpolate',
         ['linear'],
-        ['number', ['get', 'val']],
+        ['number', ['get', 'year']],
         2004, '#FF0097',
         2005, '#D800FF',
         2006, '#7400FF',
