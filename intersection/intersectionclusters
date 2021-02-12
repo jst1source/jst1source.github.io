@@ -1,0 +1,126 @@
+!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Exit Ramps US - Points</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+</style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
+var map = new mapboxgl.Map({
+container: 'map',
+//style: 'mapbox://styles/mapbox/streets-v11',
+style: 'mapbox://styles/jonathanstone/cjx1toc5j5yl21cli5syavwzu',
+center: [-98.5795, 39.8283],
+zoom: 6
+});
+ 
+map.on('load', function() {
+// Add a new source from our GeoJSON data and set the
+// 'cluster' option to true. GL-JS will add the point_count property to your source data.
+map.addSource("wwdfatalities", {
+type: "geojson",
+data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042015.geojson"
+});
+ 
+map.addLayer({
+"id": "wwdfatalities-heat",
+"type": "heatmap",
+"source": "wwdfatalities",
+"maxzoom": 15,
+"paint": {
+// Increase the heatmap weight based on frequency and property magnitude
+"heatmap-weight": ['*',5,['number', ['get', 'val']]],
+// Increase the heatmap color weight weight by zoom level
+// heatmap-intensity is a multiplier on top of heatmap-weight
+"heatmap-intensity": [
+	"interpolate",["linear"],["zoom"],
+	5, 1,
+	10, 6
+],
+// Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+// Begin color ramp at 0-stop with a 0-transparancy color
+// to create a blur-like effect.
+"heatmap-color": [
+	"interpolate",
+	["linear"],
+	["heatmap-density"],
+	0, "rgba(33,102,172,0)",
+	0.2, "rgb(103,169,207)",
+	0.4, "rgb(209,229,240)",
+	0.6, "rgb(253,219,199)",
+	0.8, "rgb(239,138,98)",
+	1, "rgb(178,24,43)"
+],
+// Adjust the heatmap radius by zoom level
+"heatmap-radius": [
+	"interpolate",["linear"],["zoom"],
+	0, 5,
+	12, 15
+	],
+	// Transition from heatmap to circle layer by zoom level
+	"heatmap-opacity": .75,
+}
+}, 'waterway-label');
+ 
+map.addLayer({
+id: "unclustered-point",
+type: "circle",
+source: "wwdfatalities",
+filter: ["!", ["has", "point_count"]],
+paint: {
+"circle-color": "#FF0000",
+"circle-radius": 2,
+"circle-stroke-width": 1,
+"circle-stroke-color": "#fff"
+}
+});
+ 
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+ closeButton: false,
+ closeOnClick: false
+});
+
+map.on('mouseenter', 'unclustered-point', function(e) {
+// Change the cursor style as a UI indicator.
+ map.getCanvas().style.cursor = 'pointer';
+ 
+ var coordinates = e.features[0].geometry.coordinates.slice();
+ var description = 'Year: ' + e.features[0].properties.year + '<br>Fatalities: ' + e.features[0].properties.val;
+ 
+ // Ensure that if the map is zoomed out such that multiple
+ // copies of the feature are visible, the popup appears
+ // over the copy being pointed to.
+ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+ }
+ 
+ // Populate the popup and set its coordinates
+ // based on the feature found.
+ popup.setLngLat(coordinates)
+ .setHTML(description)
+ .addTo(map);
+});
+ 
+map.on('mouseleave', 'unclustered-point', function() {
+ map.getCanvas().style.cursor = '';
+ popup.remove();
+});
+ 
+});
+</script>
+ 
+</body>
+</html>
