@@ -29,15 +29,15 @@ zoom: 6
 map.on('load', function() {
 // Add a new source from our GeoJSON data and set the
 // 'cluster' option to true. GL-JS will add the point_count property to your source data.
-map.addSource("wwdfatalities", {
+map.addSource("exitramps", {
 type: "geojson",
-data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042015.geojson"
+data: "https://jst1source.github.io/intersection/data/intersection_latlon_cluster.geojson"
 });
  
 map.addLayer({
 "id": "wwdfatalities-heat",
 "type": "heatmap",
-"source": "wwdfatalities",
+"source": "exitramps",
 "maxzoom": 15,
 "paint": {
 // Increase the heatmap weight based on frequency and property magnitude
@@ -77,7 +77,7 @@ map.addLayer({
 map.addLayer({
 id: "unclustered-point",
 type: "circle",
-source: "wwdfatalities",
+source: "exitramps",
 filter: ["!", ["has", "point_count"]],
 paint: {
 "circle-color": "#FF0000",
@@ -98,7 +98,7 @@ map.on('mouseenter', 'unclustered-point', function(e) {
  map.getCanvas().style.cursor = 'pointer';
  
  var coordinates = e.features[0].geometry.coordinates.slice();
- var description = 'Year: ' + e.features[0].properties.year + '<br>Fatalities: ' + e.features[0].properties.val;
+ var description = 'State: ' + e.features[0].properties.state + '<br>Count: ' + e.features[0].properties.val;
  
  // Ensure that if the map is zoomed out such that multiple
  // copies of the feature are visible, the popup appears
