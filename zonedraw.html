@@ -49,12 +49,12 @@
 <a href="#" id='updateDataset'></a>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuc3dpY2siLCJhIjoiY2l1dTUzcmgxMDJ0djJ0b2VhY2sxNXBiMyJ9.25Qs4HNEkHubd4_Awbd8Og';
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-    center: [9.096173491685818,39.233140189548976], // starting position
-    zoom: 11 // starting zoom
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-98.5795, 39.8283],
+    zoom: 4
 });
 var geoJsonFeatures;
 var Draw = mapboxgl.Draw();
