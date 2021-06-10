@@ -74,6 +74,7 @@ var datasetId = "cirqs92m00hu8fgm8piqgihok";
 
 map.on('load', function(){
     map.addControl(Draw);
+    map.on('draw.create', updateArea);
 
 //     map.addSource('my-dataset', source);
 //     map.addLayer({
@@ -145,7 +146,24 @@ map.on('load', function(){
 
 
 });
-
+function updateArea(e) {
+    var person = prompt("Please enter a unique ID for this Zone", "");
+//     var data = draw.getAll();
+//     var answer = document.getElementById('calculated-area');
+//     if (data.features.length > 0) {
+//         var area = turf.area(data);
+//         // restrict to area to 2 decimal points
+//         var rounded_area = Math.round(area * 100) / 100;
+//         answer.innerHTML =
+//         '<p><strong>' +
+//         rounded_area +
+//         '</strong></p><p>square meters</p>';
+//     } else {
+//         answer.innerHTML = '';
+//         if (e.type !== 'draw.delete')
+//         alert('Use the draw tools to draw a polygon!');
+//     }
+}
 // function setFeatureId(){
 //     return getData(datasetId);
 // }
