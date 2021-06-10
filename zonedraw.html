@@ -49,6 +49,7 @@
 <a href="#" id='updateDataset'></a>
 
 <script>
+    
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
 var map = new mapboxgl.Map({
     container: 'map',
@@ -57,7 +58,10 @@ var map = new mapboxgl.Map({
     zoom: 4
 });
 var geoJsonFeatures;
-var Draw = mapboxgl.Draw();
+//var Draw = mapboxgl.Draw();
+    
+// Create a Draw control
+var Draw = new MapboxDraw();
 
 var datasetId = "cirqs92m00hu8fgm8piqgihok";
 
