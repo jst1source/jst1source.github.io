@@ -148,8 +148,9 @@ map.on('load', function(){
 });
 function updateArea(e) {
     var person = prompt("Please enter a unique ID for this Zone", "");
-//     var data = draw.getAll();
-//     var answer = document.getElementById('calculated-area');
+    var centroid = turf.centroid(e);
+    //var data = draw.getAll();
+    //var answer = document.getElementById('calculated-area');
 //     if (data.features.length > 0) {
 //         var area = turf.area(data);
 //         // restrict to area to 2 decimal points
@@ -164,6 +165,7 @@ function updateArea(e) {
 //         alert('Use the draw tools to draw a polygon!');
 //     }
 }
+    
 // function setFeatureId(){
 //     return getData(datasetId);
 // }
