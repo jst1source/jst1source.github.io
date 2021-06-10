@@ -141,27 +141,27 @@ map.on('load', function(){
         uploadFeatures();
     }
 
-    getData(datasetId);
+//     getData(datasetId);
 
 
 });
 
-function setFeatureId(){
-    return getData(datasetId);
-}
+// function setFeatureId(){
+//     return getData(datasetId);
+// }
 
-function getData(datasetId) {
-    $.ajax({
-      url : 'https://evening-sierra-80988.herokuapp.com/dataset?datasetId=' + datasetId,
-      type : 'GET',
-      dataType: 'json'
-    })
-    .done(function(oldData){
-        geoJsonFeatures = oldData;
-        source.setData(geoJsonFeatures);
-        return geoJsonFeatures;
-    });
-}
+// function getData(datasetId) {
+//     $.ajax({
+//       url : 'https://evening-sierra-80988.herokuapp.com/dataset?datasetId=' + datasetId,
+//       type : 'GET',
+//       dataType: 'json'
+//     })
+//     .done(function(oldData){
+//         geoJsonFeatures = oldData;
+//         source.setData(geoJsonFeatures);
+//         return geoJsonFeatures;
+//     });
+// }
 
 function uploadFeatures(){
     var drawnData = Draw.getAll();
