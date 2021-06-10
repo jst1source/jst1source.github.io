@@ -164,25 +164,24 @@ map.on('load', function(){
 // }
 
 function uploadFeatures(){
-    alert('upload successful!');
-    //var drawnData = Draw.getAll();
-//     for(i = 0; i < drawnData.features.length; i++){
+    var drawnData = Draw.getAll();
+    for(i = 0; i < drawnData.features.length; i++){
 
-//         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-//         xmlhttp.open("POST", 'https://evening-sierra-80988.herokuapp.com/dataset');
-//         xmlhttp.setRequestHeader("Content-Type", "application/json");
-//         xmlhttp.send(JSON.stringify({"feature":drawnData.features[i], "datasetId": "cirqs92m00hu8fgm8piqgihok"}));
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+        xmlhttp.open("POST", 'https://evening-sierra-80988.herokuapp.com/dataset');
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify({"feature":drawnData.features[i], "datasetId": "cirqs92m00hu8fgm8piqgihok"}));
 
-//         xmlhttp.onreadystatechange = function() {
-//         if (xmlhttp.readyState == 4 && xmlhttp.status == 200 && i == drawnData.features.length) {
-//             alert('upload successful!');
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200 && i == drawnData.features.length) {
+            alert('upload successful!');
 
-//             getData(datasetId);
-//         } else if (xmlhttp.readyState == 4 && xmlhttp.status !== 200){
-//             alert('looks like something went wrong');
-//         }
-//     };
-//     }
+            getData(datasetId);
+        } else if (xmlhttp.readyState == 4 && xmlhttp.status !== 200){
+            alert('looks like something went wrong');
+        }
+    };
+    }
 }
 
 </script>
