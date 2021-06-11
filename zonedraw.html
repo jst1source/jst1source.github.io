@@ -16,7 +16,7 @@
         #map { position:absolute; top:0; bottom:0; width:100%; }
         #export, #updateDataset {
             position: absolute;
-            top:140px;
+            top:10px;
             left:10px;
             z-index:100;
             background-color:white;
@@ -37,8 +37,8 @@
             background-color: #ddd;
         }
         #updateDataset {
-            background-position: -4324px -3px;
-            top: 180px;
+            background-position: -4564px -3px;
+            top: 50px;
         }
     </style>
 </head>
@@ -58,11 +58,12 @@ var map = new mapboxgl.Map({
     zoom: 20
 });
 var geoJsonFeatures;
-//var Draw = mapboxgl.Draw();
+var drawFeatureID = '';
     
 // Create a Draw control
 var Draw = new MapboxDraw({
     displayControlsDefault: false,
+	userProperties: true,
     controls: {
         polygon: true,
         trash: true,
@@ -72,7 +73,7 @@ var Draw = new MapboxDraw({
     defaultMode: 'draw_polygon'
 });
 
-var datasetId = "cirqs92m00hu8fgm8piqgihok";
+// var datasetId = "cirqs92m00hu8fgm8piqgihok";
 
 // var source = new mapboxgl.GeoJSONSource({
 //     data: {
@@ -82,53 +83,8 @@ var datasetId = "cirqs92m00hu8fgm8piqgihok";
 // });
 
 map.on('load', function(){
-    map.addControl(Draw);
-    map.on('draw.create', updateArea);
-
-//     map.addSource('my-dataset', source);
-//     map.addLayer({
-//         "id": "dataset-point",
-//         "type": "circle",
-//         "source": "my-dataset",
-//         "layout": {},
-//         "paint": {
-//             // grab the route's color value
-//             "circle-color": "#73b6e6",
-//         },
-//         "filter": [
-//             "all",
-//             ["==", "$type", "Point"]
-//         ]
-//     });
-//     map.addLayer({
-//         "id": "dataset-line",
-//         "type": "line",
-//         "source": "my-dataset",
-//         "layout": {},
-//         "paint": {
-//             // grab the route's color value
-//             "line-color": "#73b6e6",
-//         },
-//         "filter": [
-//             "all",
-//             ["==", "$type", "LineString"]
-//         ]
-//     });
-//     map.addLayer({
-//         "id": "dataset-fill",
-//         "type": "fill",
-//         "source": "my-dataset",
-//         "layout": {},
-//         "paint": {
-//             // grab the route's color value
-//             "fill-color": "#73b6e6",
-//             "fill-outline-color": "#fff"
-//         },
-//         "filter": [
-//             "all",
-//             ["==", "$type", "Polygon"]
-//         ]
-//     });
+map.addControl(Draw);
+map.on('draw.create', updateArea);
 
     document.getElementById('export').onclick = function(e) {
         // Extract GeoJson from featureGroup
@@ -155,8 +111,28 @@ map.on('load', function(){
 
 
 });
+
+// After drawing the object, this is the closing handler to augment the object before editing is complete
 function updateArea(e) {
-    var person = prompt("Please enter a unique ID for this Zone", "");
+		
+    var person = prompt("Please enter a unique description for this Zone, e.g. Northbound Phase 1", "");
+		
+	if (e.features.length && e.features[0].type === 'Feature') {
+            var feat = e.features[0];
+            drawFeatureID = feat.id;
+			console.log(drawFeatureID);
+			e.features[0].properties.zoneid = person;
+			Draw.setFeatureProperty(drawFeatureID, 'zoneDescription', person);
+			Draw.setFeatureProperty(drawFeatureID, 'intersectionId', 'newIntersectionXYZfromsessionstate');
+        }
+	
+	
+	//console.log(Draw.getAll());
+	//set prop value for id prompt
+	//Draw.setFeatureProperty(drawFeatureID, 'zoneid', person);
+    //var feat = draw.get(drawFeatureID);
+    //draw.add(feat)
+   
     //var data = draw.getAll();
     //var centroid = turf.centroid(e);
     
