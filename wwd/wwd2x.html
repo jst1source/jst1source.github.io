@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Wrong Way Driver Fatalities 2004 - 2017 (NHTSA FARS) and US Exit Ramps (OpenStreetMaps) </title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+		  margin: 0;
+		  padding: 0;
+		  font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+		}
+
+		h2,
+		h3 {
+		  margin: 10px;
+		  font-size: 1.2em;
+		}
+
+		h3 {
+		  font-size: 1em;
+		}
+
+		p {
+		  font-size: 0.85em;
+		  margin: 10px;
+		  text-align: left;
+		}
+		
+		.dot {
+		  height: 8px;
+		  width: 8px;
+		  background-color: #000;
+		  border-radius: 50%;
+		  display: inline-block;
+		}
+
+		/**
+		* Create a position for the map
+		* on the page */
+		#map {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  width: 100%;
+		}
+		
+		.console {
+		  position: absolute;
+		  width: 350px;
+		  margin: 10px;
+		  padding: 10px;
+		  background: rgba(255, 255, 255, 0.8);
+		  border-radius: 3px;
+		}
+		
+		.state {
+		  background: rgba(245, 245, 245, 0.8);
+		  border-radius: 3px;
+		  height: 35px;
+		  padding: 3px;
+		  margin-top: 10px;
+		}
+		
+		/**
+		* Set rules for how the map overlays
+		* (information box and legend) will be displayed
+		* on the page. */
+		
+		.map-overlay {
+		  position: absolute;
+		  bottom: 0;
+		  right: 0;
+		  background: rgba(255, 255, 255, 0.8);
+		  margin-right: 20px;
+		  font-family: Arial, sans-serif;
+		  overflow: auto;
+		  border-radius: 3px;
+		}
+
+		#features {
+		  top: 0;
+		  height: 100px;
+		  margin-top: 20px;
+		  width: 250px;
+		}
+
+		#legend {
+		  padding: 10px;
+		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+		  line-height: 18px;
+		  height: 150px;
+		  margin-bottom: 40px;
+		  width: 100px;
+		}
+
+		.legend-key {
+		  display: inline-block;
+		  border-radius: 20%;
+		  width: 10px;
+		  height: 10px;
+		  margin-right: 5px;
+		}
+		
+		.row {
+		  height: 14px;
+		  width: 100%;
+		}
+
+		.colors1 {
+		  background: linear-gradient(to right, #ffd400, #ffbb00, #ff9d00, #ff6e00, #ff5000, #ff006a, #ff00b6);
+		  margin-bottom: 5px;
+		}
+				
+		.colors {
+		  background: linear-gradient(to right, #404787, #287e8f, #1e9488, #29ae7f, #53c666, #96d841, #dae119);
+		  margin-bottom: 5px;
+		}
+		 
+		.label {
+		  width: 13%;
+		  display: inline-block;
+		  text-align: center;
+		}
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<div class='console'>
+  <b>US WWD Fatalities 2004 - 2017 <br>& Highway Exits (<span class="dot"></span> dots)</b>
+  <br><br>
+  <div class='session'>
+    <b>Crash Bubbles - # of Fatalities</b>
+    <div class='row colors1'>
+    </div>
+    <div class='row labels'>
+      <div class='label'>1</div>
+      <div class='label'>2</div>
+      <div class='label'>3</div>
+      <div class='label'>4</div>
+      <div class='label'>5</div>
+      <div class='label'>6</div>
+      <div class='label'>7+</div>
+    </div>
+	<br>
+	<b>Fatalities by State</b>
+	<div class='row colors'>
+    </div>
+    <div class='row labels'>
+      <div class='label'>0</div>
+      <div class='label'>50</div>
+      <div class='label'>100</div>
+      <div class='label'>200</div>
+      <div class='label'>300</div>
+      <div class='label'>500</div>
+      <div class='label'>800+</div>
+    </div>
+	<div id='pd' class='state'>Hover over / tap on a state!</div>
+</div>
+</div>
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5zdG9uZSIsImEiOiJjanZpajVjNW0wNmhwM3lxZ2oyMGUzYzM0In0._B3-TNb0-SOxhKn4rB4Vlg';
+var map = new mapboxgl.Map({
+  container: 'map', // container id
+  style: 'mapbox://styles/jonathanstone/ck0mpgbu24rld1clsj84nambg', // replace this with your style URL
+  center: [-98.5795, 39.8283],
+	zoom: 5
+});
+
+
+
+map.on('load', function() {
+  // the rest of the code will go in here
+	map.getCanvas().style.cursor = 'default';
+	//map.fitBounds([[-133.2421875, 16.972741], [-47.63671875, 52.696361]]);
+	
+	map.addSource("wwdfatalities", {
+		type: "geojson",
+		data: "https://jst1source.github.io/wwd/data/wwd_fatalities_20042017_detailed.geojson"
+	});
+	 
+	
+	
+	
+	map.addLayer({
+	id: "unclustered-point",
+		type: "circle",
+		source: "wwdfatalities",
+		filter: ["!", ["has", "point_count"]],
+		paint: {
+		"circle-stroke-color": "#000",
+		"circle-opacity": .75,
+		"circle-radius": [
+		 'interpolate', ['linear'], ['zoom'],
+		 4, ['*',5,['log10',['*',8,['number', ['get', 'val']]]]],
+		 22, ['*',25,['log10',['*',8,['number', ['get', 'val']]]]],
+		],
+		"circle-stroke-width": .5,
+		"circle-color": [
+				'interpolate',
+				['linear'],
+				['number', ['get', 'val']],
+				1, '#ffd400',
+				2, '#ffbb00',
+				3, '#ff9d00',
+				4, '#ff6e00',
+				5, '#ff5000',
+				6, '#ff006a',
+				7, '#ff00b6',
+				8, '#ff00b6'
+			  ]
+		}
+	});
+});
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+ closeButton: false,
+ closeOnClick: false
+});
+
+map.on('mouseenter', 'unclustered-point', function(e) {
+// Change the cursor style as a UI indicator.
+ map.getCanvas().style.cursor = 'pointer';
+ 
+ var coordinates = e.features[0].geometry.coordinates.slice();
+
+ var description = '<b>WWD Crash</b><br>Year: ' + e.features[0].properties.year + '<br>Fatalities: ' + e.features[0].properties.val + '<br>State: ' + e.features[0].properties.state + '<br>County: ' + e.features[0].properties.county + '<br>ZIP: ' + e.features[0].properties.zip + '<br>Latitude: ' + e.features[0].geometry.coordinates[1] + '<br>Longitude: ' + e.features[0].geometry.coordinates[0];
+ 
+ // Ensure that if the map is zoomed out such that multiple
+ // copies of the feature are visible, the popup appears
+ // over the copy being pointed to.
+ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+ }
+ 
+ // Populate the popup and set its coordinates
+ // based on the feature found.
+ popup.setLngLat(coordinates)
+ .setHTML(description)
+ .addTo(map);
+});
+ 
+map.on('mouseleave', 'unclustered-point', function() {
+ map.getCanvas().style.cursor = '';
+ popup.remove();
+});
+
+map.on('mousemove', function(e) {
+  var states = map.queryRenderedFeatures(e.point, {
+    layers: ['statedata']
+  });
+
+  if (states.length > 0) {
+    document.getElementById('pd').innerHTML = '<b>' + states[0].properties.name + ':</b><br>' + states[0].properties.fatalities + ' WWD Fatalities 2004 - 2017';
+  } else {
+    document.getElementById('pd').innerHTML = 'Hover over / tap on a state!';
+  }
+});
+</script>
+
+</body>
+</html>
