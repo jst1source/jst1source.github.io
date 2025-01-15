@@ -30,8 +30,8 @@
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
-  center: [-89.981292, 35.068665], // starting position
-  zoom: 6
+  center: [-96.734333, 32.659580], // starting position
+  zoom: 4
 });
 
 
@@ -159,7 +159,7 @@ map.on('load', () => {
       }
     });
   }
-  getRoute(end);
+  getRoute(endX);
 });
 });
     </script>
