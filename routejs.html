@@ -38,7 +38,7 @@ const map = new mapboxgl.Map({
 // an arbitrary start will always be the same
 // only the end or destination will change
 const start = [-89.981292, 35.068665];
-const end = [-99.439471, 27.527593];
+const endX = [-99.439471, 27.527593];
 
 // create a function to make a directions request
 async function getRoute(end) {
@@ -89,7 +89,7 @@ async function getRoute(end) {
 map.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
-  getRoute(end);
+  getRoute(endX);
 
   // Add starting point to the map
   map.addLayer({
