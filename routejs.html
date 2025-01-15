@@ -43,6 +43,7 @@ map.setMaxBounds(bounds);
 // an arbitrary start will always be the same
 // only the end or destination will change
 const start = [-122.662323, 45.523751];
+const end1 = [27.608558, -99.489139];
 
 // create a function to make a directions request
 async function getRoute(end) {
@@ -88,7 +89,6 @@ async function getRoute(end) {
       }
     });
   }
-  // add turn instructions here at the end
 }
 
 map.on('load', () => {
@@ -164,7 +164,7 @@ map.on('load', () => {
       }
     });
   }
-  getRoute('27.608558, -99.489139');
+  getRoute(end1);
 });
 });
     </script>
