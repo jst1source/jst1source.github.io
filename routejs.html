@@ -43,7 +43,7 @@ map.setMaxBounds(bounds);
 // an arbitrary start will always be the same
 // only the end or destination will change
 const start = [-122.662323, 45.523751];
-const end1 = [27.608558, -99.489139];
+const end1 = [-99.439471, 27.527593];
 
 // create a function to make a directions request
 async function getRoute(end) {
@@ -94,7 +94,7 @@ async function getRoute(end) {
 map.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
-  getRoute(start);
+  getRoute(end1);
 
   // Add starting point to the map
   map.addLayer({
